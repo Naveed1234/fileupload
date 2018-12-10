@@ -1,0 +1,68 @@
+﻿@model FileUpload.Carrer
+
+@{
+    ViewBag.Title = "SubmitCV";
+}
+
+<h2>SubmitCV</h2>
+
+ @using (Html.BeginForm("SubmitCv", "Carrer", FormMethod.Post))
+                       {
+                           @Html.ValidationSummary()
+                            @Html.AntiForgeryToken()
+
+    < div class="form-horizontal">
+        <h4>Carrer</h4>
+        <hr />
+        @if(ViewBag.Messag!=null)
+                   {
+            <span style="color:green">
+                @ViewBag.Message
+            </span>
+        }
+                   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        @*</div>
+        <div class="editor-label">
+           Select CV
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" />
+            @Html.ValidationMessage("CustomError")
+        </div>*@
+        
+        <div>
+            <p><input type="submit" value="Create" /></p>
+        </div>
+        
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
